@@ -43,4 +43,18 @@ async function EditTollPlazaFeeRules(req, res, next) {
     res.send({ success: true });
 }
 
-module.exports = {AddTollPlazaFeeRules, FetchTollPlazaFeeRules, EditTollPlazaFeeRules};
+
+async function FetchAmount(req, res, next) {
+    const {type, journey} = req.body;
+    
+    let sql = `SELECT amount FROM Toll_TollPLazaFeeRules WHERE v_type='${type}' AND j_type='${journey}'`;
+    const amount = await new Promise((resolve, reject) => {
+        conn.query(sql, (err, result) => {
+            if(err) console.log(err);
+            resolve(result);
+        })
+    })
+    res.send({ success: true, amount: amount[0].amount });
+}
+
+module.exports = {AddTollPlazaFeeRules, FetchTollPlazaFeeRules, EditTollPlazaFeeRules, FetchAmount};
