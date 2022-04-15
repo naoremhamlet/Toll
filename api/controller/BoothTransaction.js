@@ -15,7 +15,6 @@ async function AddTransaction(req, res, next) {
     const values = `'${t_id}','${e_code}','${booth}','${lane}','${shift}','${type}','${vehicle}','${journey}','${s_weight}','${weight}','${amount}','${date}'`
     
     let sql = `INSERT INTO Toll_BoothTransaction VALUES (${values})`
-    console.log(sql);
     let inserts = await new Promise((resolve, reject)=> {
         conn.query(sql, (err, result) => {
             if(err) return res.send(404).json({message: "something went wrong"});
