@@ -23,7 +23,7 @@ async function AddTransaction(req, res, next) {
         })
     })
 
-    res.status(200).json({trxnid: t_id, date: date});
+    res.status(200).json({success : true,trxnid: t_id, date: date});
 }
 
 function generateShift() {
