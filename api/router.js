@@ -8,9 +8,10 @@ const { FetchTollName, AddTollName, EditTollName } = require('./controller/TollN
 const { FetchTollPlazaFeeRules, AddTollPlazaFeeRules, EditTollPlazaFeeRules } = require('./controller/TollPlazaFeeRules');
 const { EditUser, AddUser, FetchUser } = require('./controller/User');
 const { EditVehicleMaster, AddVehicleMaster, FetchVehicleMaster } = require('./controller/VehicleMaster');
-const { Authenticate } = require('./controller/Authentication');
+const { Authenticate } = require('./android/Authentication');
+const { CheckConnection } = require('./android/Android');
 
-
+//main application routes
 Router.post('/api/boothtransaction/add', AddTransaction);
 Router.post('/api/boothtransaction/delete', DeleteTransaction);
 Router.get('/api/boothtransaction/fetch', FetchTransaction);
@@ -45,7 +46,11 @@ Router.get('/api/vehiclemaster/fetch', FetchVehicleMaster);
 Router.post('/api/vehiclemaster/add', AddVehicleMaster);
 Router.post('/api/vehiclemaster/edit', EditVehicleMaster);
 
+
+
+//android application routes
 Router.post('/api/authenticate', Authenticate);
+Router.get('/', CheckConnection);
 
 
 exports.Router = Router;

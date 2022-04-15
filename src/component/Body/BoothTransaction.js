@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Save from '../../assets/save.svg';
+// import Save from '../../assets/save.svg';
 import Cancel from '../../assets/cancel.svg';
 import Search from '../../assets/search.svg';
-import Edit from '../../assets/edit.svg';
+// import Edit from '../../assets/edit.svg';
 import Datetime from 'react-datetime';
 import "react-datetime/css/react-datetime.css";
 import Delete from "../../assets/delete.svg";
@@ -215,6 +215,7 @@ class BoothTransaction extends Component {
                     <td>{el.t_id}</td>
                     <td>{el.e_code}</td>
                     <td>{el.b_no}</td>
+                    <td>{el.l_no}</td>
                     <td>{el.s_no}</td>
                     <td>{el.v_type}</td>
                     <td>{el.v_no}</td>
@@ -247,7 +248,7 @@ class BoothTransaction extends Component {
             <div className='container w-75 justfiy-content-center'>
                 <table className="table mt-3 table-hover">
                     <thead className="table-dark">
-                        <this.THead data={["SNo", "Transaction Id", "Emp Code", "Booth no","Shift No", "Vehicle Type","Vehicle No",
+                        <this.THead data={["SNo", "Transaction Id", "Emp Code", "Booth no","Lane No","Shift No", "Vehicle Type","Vehicle No",
                             "Journey Type","Vehicle st. wt.", "Vehicle wt.", "Amount", "Date", ""]} />
                     </thead>
                     <tbody>

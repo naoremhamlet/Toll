@@ -1,7 +1,7 @@
 const { conn } = require("./connection");
 
 const queries = [
-    `CREATE TABLE IF NOT EXISTS Toll_BoothTransaction (t_id varchar(255),e_code varchar(255),b_no varchar(255),s_no varchar(255),v_type varchar(255),v_no varchar(255),j_type varchar(255),v_st_wt varchar(255),v_wt varchar(255), amount varchar(255),date datetime)`,
+    `CREATE TABLE IF NOT EXISTS Toll_BoothTransaction (t_id varchar(255),e_code varchar(255),b_no varchar(255),l_no varchar(255), s_no varchar(255),v_type varchar(255),v_no varchar(255),j_type varchar(255),v_st_wt varchar(255),v_wt varchar(255), amount varchar(255),date datetime)`,
     `CREATE TABLE IF NOT EXISTS Toll_BoothMaster (boothno varchar(255), ipaddress varchar(255))`,
     `CREATE TABLE IF NOT EXISTS Toll_CompanyName (company varchar(255))`,
     `CREATE TABLE IF NOT EXISTS Toll_JourneyMaster (j_type varchar(255))`,

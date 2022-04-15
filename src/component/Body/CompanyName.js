@@ -86,7 +86,7 @@ class CompanyName extends Component {
     }
 
     TopSection() {
-        const {company, currdata} = this.state;
+        const {company, currdata, data} = this.state;
         return (
             <div className='shadow p-3 m-3 bg-white rounded'>
                 <div className='container w-50'>
@@ -107,14 +107,17 @@ class CompanyName extends Component {
                             <span className="input-group-text" onClick={(e) => this.setState({company: "", currdata: null, tableload:false})}>
                                 <img src={Cancel} alt='' width={20} />
                             </span>
-                            <span className="input-group-text" onClick={(e) => {
-                                if(currdata)
-                                    this.edit();
-                                else 
-                                    this.save();
-                            }}>
-                                <img src={Save} alt='' width={20} />
-                            </span>
+                            {
+                                (currdata || !data.length) &&
+                                <span className="input-group-text" onClick={(e) => {
+                                    if(currdata)
+                                        this.edit();
+                                    else 
+                                        this.save();
+                                }}>
+                                    <img src={Save} alt='' width={20} />
+                                </span>
+                            }
                         </div>
                     </div>
                 </div>

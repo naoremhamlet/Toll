@@ -1,9 +1,63 @@
+// const crypto = require("crypto");
+const moment = require('moment');
 const { conn } = require("../connection");
 
-async function AddTransaction(req, res, next) {
-    console.log(req.body);
 
-    res.send({success: true});
+async function AddTransaction(req, res, next) {
+    const {vehicle, type, journey, s_weight, lane, username, booth, weight, amount} = req.body;
+    const t_id = (moment().unix()).toString();
+    const e_code = await fetchempcode(username);
+
+    const date = moment().format('YYYY-MM-DD HH:mm:ss');
+
+    const shift = generateShift();
+
+    const values = `'${t_id}','${e_code}','${booth}','${lane}','${shift}','${type}','${vehicle}','${journey}','${s_weight}','${weight}','${amount}','${date}'`
+    
+    let sql = `INSERT INTO Toll_BoothTransaction VALUES (${values})`
+    console.log(sql);
+    let inserts = await new Promise((resolve, reject)=> {
+        conn.query(sql, (err, result) => {
+            if(err) return res.send(404).json({message: "something went wrong"});
+            resolve(result);
+        })
+    })
+
+    res.status(200).json({trxnid: t_id, date: date});
+}
+
+function generateShift() {
+
+    var currentHour = moment().format("HH");
+  
+    if (currentHour < 12){
+        return "Shift-1"
+    } else {
+        return "Shift-2"
+    }
+}
+  
+
+// async function fetchamount(type, journey) {
+//     let sql = `SELECT amount FROM Toll_User WHERE v_type='${type}' AND `
+//     let usertable = await new Promise((resolve, reject)=> {
+//         conn.query(sql, (err, result) => {
+//             if(err) console.log(err);
+//             resolve(result);
+//         })
+//     })
+// }
+
+async function fetchempcode(user) {
+    let sql = `SELECT empcode AS e_code FROM Toll_User WHERE name='${user}'`
+    let usertable = await new Promise((resolve, reject)=> {
+        conn.query(sql, (err, result) => {
+            if(err) console.log(err);
+            resolve(result);
+        })
+    })
+
+    return usertable[0].e_code;
 }
 
 async function FetchPageCount(req, res, next) {
