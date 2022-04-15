@@ -18,12 +18,9 @@
     "mysql": "^2.18.1",
     "path": "^0.12.7",
     "react": "^17.0.2",
-    "react-bootstrap-datetimepicker": "0.0.22",
-    "react-confirm-alert": "^2.8.0",
     "react-datetime": "^3.1.1",
     "react-dom": "^17.0.2",
     "react-js-pagination": "^3.0.3",
-    "react-responsive-modal": "^6.2.0",
     "react-scripts": "5.0.0",
     "web-vitals": "^2.1.4"
   },
